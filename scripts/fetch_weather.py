@@ -7,7 +7,7 @@ load_dotenv("/opt/airflow/.env")  # path ภายใน container
 from datetime import datetime
 
 def fetch_and_store_weather_for_city(city):
-    API_KEY = os.getenv("API_KEY")
+    API_KEY = os.getenv("API_KEY") #!!<---------- ใส่ API KEY ที่นี่ 
     URL = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
 
     res = requests.get(URL)
