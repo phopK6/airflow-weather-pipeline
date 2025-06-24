@@ -17,12 +17,5 @@
 ## 📁 โครงสร้างโปรเจกต์
 
 weather-pipeline/
-├── dags/ # โฟลเดอร์เก็บ Airflow DAG
-│ └── daily_weather_multi_city.py
-├── scripts/ # Python scripts ที่ใช้ใน DAG
-│ └── fetch_weather.py
-├── requirements.txt # ไลบรารี Python ที่ต้องติดตั้ง
-├── docker-compose.yaml # สคริปต์รัน Airflow + PostgreSQL ด้วย Docker
-├── .gitignore
-└── README.md
+
 
