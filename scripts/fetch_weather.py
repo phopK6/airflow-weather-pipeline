@@ -16,7 +16,7 @@ def fetch_and_store_weather_for_city(city):
 
     conn = psycopg2.connect(
         host="postgres",      # ชื่อ service postgres ใน docker-compose
-        database="airflow",
+        database="weather",
         user="airflow",
         password="airflow"
     )

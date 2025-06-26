@@ -28,9 +28,11 @@ services:
       - ./requirements.txt:/requirements.txt
       - ./.env:/opt/airflow/.env
     entrypoint: >
-      bash -c "airflow db upgrade &&
-               airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin &&
-               airflow scheduler"
+      bash -c "
+        pip install -r /requirements.txt &&
+        airflow db upgrade &&
+        airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin &&
+        echo '✅ Airflow init done.'"
 
   webserver:
     image: apache/airflow:2.9.1
@@ -73,6 +75,27 @@ services:
     entrypoint: >
       bash -c "pip install -r /requirements.txt && airflow scheduler"
     command: scheduler
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    hostname: metabase
+    volumes:
+      - /dev/urandom:/dev/random:ro
+    ports:
+      - 3000:3000
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: weather
+      MB_DB_PORT: 5432
+      MB_DB_USER: airflow
+      MB_DB_PASS: airflow
+      MB_DB_HOST: postgres
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_db:
