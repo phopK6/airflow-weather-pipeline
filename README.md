@@ -6,6 +6,13 @@
 
 ---
 
+## 📊 ตัวอย่าง Dashboard
+
+<img src="assets/metabase.png" width="600" alt="Dashboard Example" />
+<img src="assets/airflow.png" width="600" alt="Airflow Example" />
+
+---
+
 ## 🧰 Tech Stack
 
 - Apache Airflow 2.9.1 (รันใน Docker Container)
